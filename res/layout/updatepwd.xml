@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="30dp"
+    android:paddingTop="50dp" >
+
+    <TextView
+        android:id="@+id/txvoldpassword"
+        style="@style/match_wrap"
+        android:text="@string/strtxvoldpassword"
+        android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/edtoldpassword"
+        android:inputType="textPassword"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txvnewpassword"
+        style="@style/match_wrap"
+        android:layout_marginTop="40dp"
+        android:text="@string/strtxvnewpassword"
+        android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/edtnewpassword"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword" />
+
+    <LinearLayout
+        style="@style/match_wrap"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnupdsubmit"
+            style="@style/wrap_wrap"
+            android:text="@string/strbtnupdsubmit" />
+
+        <Button
+            android:id="@+id/btnupdcencel"
+            style="@style/wrap_wrap"
+            android:layout_marginLeft="40dp"
+            android:text="@string/strbtnupdcencel" />
+    </LinearLayout>
+
+</LinearLayout>

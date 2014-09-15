@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bk"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/llayout_userimg"
+        style="@style/fragmain_llayout_content" >
+
+        <ImageView
+            android:id="@+id/img_userlogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/fragmain_userlogo"
+            android:src="@drawable/img_userlogo" />
+
+        <TextView
+            android:layout_marginLeft="11dp"
+            android:id="@+id/txv_username_pre"
+            style="@style/fragmain_txv"
+            android:layout_gravity="center_vertical"
+            android:text="@string/fragmain_username_pre"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/txv_username"
+            style="@style/fragmain_txv"
+            android:layout_gravity="center_vertical"
+            android:text="XXX"
+            android:textSize="26sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llayout_class"
+        style="@style/fragmain_llayout_content" >
+
+        <TextView
+            android:id="@+id/txv_class_pre"
+            style="@style/fragmain_txv"
+            android:text="@string/fragmain_class_pre"
+            />
+
+        <TextView
+            android:id="@+id/txv_class"
+            style="@style/fragmain_txv"
+            android:text="XXX"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llayout_phone"
+        style="@style/fragmain_llayout_content" >
+
+        <TextView
+            android:id="@+id/txv_phone_pre"
+            style="@style/fragmain_txv"
+            android:text="@string/fragmain_phone_pre"
+            />
+
+        <TextView
+            android:id="@+id/txv_phone"
+            style="@style/fragmain_txv"
+            android:text="XXX"
+             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llayout_tea"
+        style="@style/fragmain_llayout_content" >
+
+        <TextView
+            android:id="@+id/txv_tea_pre"
+            style="@style/fragmain_txv"
+            android:text="@string/fragmain_tea_pre"
+            />
+
+        <TextView
+            android:id="@+id/txv_tea"
+            style="@style/fragmain_txv"
+            android:text="XXX"
+            />
+    </LinearLayout>
+
+</LinearLayout>

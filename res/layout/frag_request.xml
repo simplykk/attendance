@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bk"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/llayout_fromtime"
+        style="@style/fragmain_llayout_content" >
+
+        <TextView
+            android:id="@+id/txv_fromtime"
+            style="@style/fragmain_txv"
+            android:text="@string/fragreq_fromtime" />
+
+        <!--
+        <DatePicker 
+            android:id="@+id/date_fromtime"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            />
+        <TimePicker 
+            android:id="@+id/time_fromtime"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            />
+        -->
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llayout_totime"
+        style="@style/fragmain_llayout_content" >
+
+        <TextView
+            android:id="@+id/txv_totime"
+            style="@style/fragmain_txv"
+            android:text="@string/fragreq_totime" />
+        <!--
+        <DatePicker 
+            android:id="@+id/date_totime"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            />
+        <TimePicker 
+            android:id="@+id/time_totime"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            />
+        -->
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llayout_reason"
+        style="@style/fragmain_llayout_content" >
+
+        <TextView
+            android:id="@+id/txv_reason"
+            style="@style/fragmain_txv"
+            android:text="@string/fragreq_reason" />
+
+        <EditText
+            android:hint="@string/fragreq_reason_hint"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:background="@drawable/bk_reason"
+            android:lines="3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llayout_type"
+        style="@style/fragmain_llayout_content" >
+
+        <TextView
+            android:id="@+id/txv_type"
+            style="@style/fragmain_txv"
+            android:text="@string/fragreq_type" />
+
+        <Spinner
+            android:id="@+id/spn_type"
+            android:layout_width="200dp"
+            android:layout_height="38dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llayout_account"
+        style="@style/fragmain_llayout_content" >
+
+        <TextView
+            android:id="@+id/txv_account_pre"
+            style="@style/fragmain_txv"
+            android:text="@string/fragmain_account_pre" />
+
+        <TextView
+            android:id="@+id/txv_account"
+            style="@style/fragmain_txv" />
+    </LinearLayout>
+    <LinearLayout 
+        android:id="@+id/llayout_btn"
+        style="@style/fragmain_llayout_content"
+        android:layout_margin="0dp"
+        >
+        
+         <Button 
+           style="@style/fragmain_btn"
+        android:id="@+id/btn_ok"
+        android:text="@string/fragmain_btnok"
+        android:layout_margin="10dp"
+        />
+        <Button
+            android:layout_margin="10dp"
+            android:id="@+id/btn_cancel"
+            android:text="@string/fragmain_btncancel"
+            style="@style/fragmain_btn"
+            />
+        
+    </LinearLayout>
+
+</LinearLayout>

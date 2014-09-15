@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AttendanceApp</string>
+    <string name="action_settings">Settings</string>
+    
+<!--     <string name="app_name">学生请假系统</string> -->
+<!--     <string name="action_settings">设置</string> -->
+    <string name="selecttype">选择登陆身份：</string>
+    <string name="login_username_hint">学号或学工号</string>
+    <string name="login_userpassword_hind">输入密码</string>
+    <string name="login_username">账号：</string>
+    <string name="login_password">密码：</string>
+    <string name="login_login_hint">登录</string>
+    
+    <string name="tab_grid_imgdesc">点击</string>
+    
+    <string name="fragmain_userlogo">用户头像</string>
+    <string name="fragmain_username_pre">用户姓名：</string>
+    <string name="fragmain_class_pre">班级：</string>
+    <string name="fragmain_phone_pre">手机号码：</string>
+    <string name="fragmain_tea_pre">班主任：</string>
+    
+    <string name="fragreq_fromtime">从：</string>
+    <string name="fragreq_totime">到：</string>
+    <string name="fragreq_reason">因：</string>
+    <string name="fragreq_reason_hint">不超过40个字</string>
+    <string name="fragreq_type">请假：</string>
+    <string name="fragmain_account_pre">共：</string>
+    <string name="fragmain_btnok">请假</string>
+    <string name="fragmain_btncancel">取消</string>
+    <string name="fragmain_btnupdate">修改</string>
+    
+    
+    <string name="rememberuser">记住用户名</string>
+    <string name="rememberpassword">记住密码</string>
+    <string name="fogetpassword">忘记密码</string>
+    <string name="register">退出 </string>
+    <string name="login">登录</string>
+    <string name="txvstuname">您的姓名：</string>
+    <string name="txvstuclass">所在班级：</string>
+    <string name="txvstuteacher">班   主   任：</string>
+    <string name="txvreson">请输入您的请假原因（不多于40个字）：</string>
+    <string name="resonhint">在这里输入您的请假原因</string>
+    <string name="confirmtorequest">是否要发起请假？\n\n</string>
+    <string name="btnokstr">\t是\t</string>
+    <string name="btnnostr">\t否\t</string>
+    <string name="txvtab2plus1str">\t从\t</string>
+    <string name="txvtab2plus2str">\t到\t</string>
+    <string name="txvtab2resonstr">请假原因：</string>
+    <string name="deleteconfirm">是否删除这条信息？\n\t\t\t</string>
+    <string name="txvdeleteinfostr">您要确定修改这条信息？\n\t\t\t</string>
+    <string name="btnsubmitstr">确定</string>
+    <string name="btncencelstr">取消</string>
+    <string name="txvtab2requesttimestr">您的请假时间段为：</string>
+    <string name="monitorconfirm">确认</string>
+    <string name="strtxvfindphonenum">输入手机号码：</string>
+    <string name="strtxvfindstunum">输入您的 学号：</string>
+    <string name="strbtnfindsumit">重置密码</string>
+    <string name="strbtnfindcencel">重新填写</string>
+    <string name="strtxvoldpassword">输入原密码:</string>
+    <string name="strtxvnewpassword">输入新密码:</string>
+    <string name="strbtnupdsubmit">确定修改</string>
+    <string name="strbtnupdcencel">取消修改</string>
+    <string name="strchoosestarttime">选择起始时间：</string>
+    <string name="strsetdates">日期：</string>
+    <string name="strchoosefinishtime">选择结束时间：</string>
+    <string name="strsettimes">时间：</string>
+    <string name="strbacktomain">返回首页</string>
+    <string name="strcencelreqs">取消请假</string>
+    <string name="strquescencelreqs">已申请请假，正在审核中\n\n\t\t\t你是否要取消请假？</string>
+    <string name="strwaittoconfirmnum">等待确认请假信息的人数：</string>
+
+</resources>

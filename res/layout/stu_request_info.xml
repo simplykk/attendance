@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="vertical" >
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txvfirstdate"
+                style="@style/wrap_wrap"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/strchoosestarttime" />
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/txvchoosedate"
+                    style="@style/wrap_wrap"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/strsetdates" />
+
+                <EditText
+                    android:id="@+id/edtdate"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:focusable="false" />
+
+                <TextView
+                    android:id="@+id/txvchoosetime"
+                    style="@style/wrap_wrap"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/strsettimes" />
+
+                <EditText
+                    android:id="@+id/edttime"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txvlastdate"
+                style="@style/wrap_wrap"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/strchoosefinishtime" />
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/txvlastdateinfo"
+                    style="@style/wrap_wrap"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/strsetdates" />
+
+                <EditText
+                    android:id="@+id/edtlastdate"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/txvlasttime"
+                    style="@style/wrap_wrap"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/strsettimes" />
+
+                <EditText
+                    android:id="@+id/edtlasttimeinfo"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txvreson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/txvreson"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edtreson"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:hint="@string/resonhint"
+                android:inputType="textMultiLine"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/btnfinalsubmit"
+                    style="@style/wrap_wrap"
+                    android:layout_marginRight="30dp"
+                    android:text="@string/btnsubmitstr" />
+
+                <Button
+                    android:id="@+id/btnfinalcencel"
+                    style="@style/wrap_wrap"
+                    android:text="@string/btncencelstr" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        style="@style/match_wrap"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/wrap_wrap"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/strwaittoconfirmnum" />
+
+        <TextView
+            android:id="@+id/stucount"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal" />
+
+        <Button
+            android:layout_marginLeft="10dp"
+            android:id="@+id/btnmonitorconfirm"
+           style="@style/wrap_wrap"
+            android:layout_gravity="center"
+            android:text="@string/monitorconfirm" />
+    </LinearLayout>
+
+    <!-- <LinearLayout
+        style="@style/match_wrap"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/monaskrequest"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/stu_req" />
+
+        <ImageButton
+            android:id="@+id/monupdaterequest"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/stu_update" />
+    </LinearLayout> -->
+
+   <!--  <LinearLayout
+        style="@style/match_wrap"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/monupdatepassword"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/upd" />
+
+        <ImageButton
+            android:id="@+id/monhistory"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/stu_history" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/monstuport"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/gobacklogin" /> -->
+
+</LinearLayout>

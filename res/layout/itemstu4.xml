@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/txvstu4stuname"
+        style="@style/tea1itemsStyle" />
+
+    <TextView
+        android:id="@+id/txvstu4teaname"
+        style="@style/tea1itemsStyle" />
+
+    <TextView
+        android:id="@+id/txvstu4classname"
+        style="@style/tea1itemsStyle" />
+
+    <TextView
+        android:id="@+id/txvstu4stureson"
+        style="@style/tea1itemsStyle" />
+
+    <TextView
+        android:id="@+id/txvstu4confirmdate"
+        style="@style/tea1itemsStyle" />
+
+</LinearLayout>

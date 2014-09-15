@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/txvreqs_sta"
+        style="@style/match_wrap"
+        android:layout_marginTop="140dp"
+        android:text="@string/strquescencelreqs"
+        android:gravity="center_horizontal"
+        android:textSize="24sp" />
+    
+
+    <LinearLayout
+        style="@style/match_wrap"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnreqs_stasubmit"
+            style="@style/wrap_wrap"
+            android:layout_marginRight="50dp"
+            android:text="@string/strcencelreqs" />
+
+        <Button
+            android:id="@+id/btnreqs_staback"
+            style="@style/wrap_wrap"
+            android:text="@string/strbacktomain" />
+    </LinearLayout>
+
+</LinearLayout>

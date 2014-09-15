@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/qqtab_1lay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" >
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingRight="40dp" >
+
+                <TextView
+                    android:id="@+id/txvstuname2"
+                    style="@style/wrap_wrap"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/txvstuname"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edtstuname2"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="@string/txvstuname"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingRight="40dp" >
+
+                <TextView
+                    android:id="@+id/txvclass2"
+                    style="@style/wrap_wrap"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/txvstuclass"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edtclass2"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="@string/txvstuclass"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingRight="40dp" >
+
+                <TextView
+                    android:id="@+id/txvstuteache2r"
+                    style="@style/wrap_wrap"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/txvstuteacher"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edtstuteacher2"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="@string/txvstuteacher"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txvtab2requesttime"
+                style="@style/wrap_wrap"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/txvtab2requesttimestr" />
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/txvtab2plus1"
+                    style="@style/wrap_wrap"
+                    android:text="@string/txvtab2plus1str" />
+
+                <EditText
+                    android:id="@+id/edtteb2date"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:focusable="false" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/txvtab2plus2"
+                    style="@style/wrap_wrap"
+                    android:text="@string/txvtab2plus2str" />
+
+                <EditText
+                    android:id="@+id/edtteb2lastdate"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:focusable="false" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txvtab2reson"
+                style="@style/wrap_wrap"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/txvtab2resonstr"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edttab2reson"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:focusable="false"
+                android:inputType="textMultiLine"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txvdeleteinfo"
+                style="@style/wrap_wrap"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/txvdeleteinfostr"
+                android:textSize="22sp" />
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/btnsubmit"
+                    style="@style/wrap_wrap"
+                    android:layout_marginRight="30dp"
+                    android:text="@string/btnsubmitstr" />
+
+                <Button
+                    android:id="@+id/btncencel"
+                    style="@style/wrap_wrap"
+                    android:text="@string/btncencelstr" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
