@@ -1,5 +1,6 @@
 package cn.edu.zime.base.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -9,6 +10,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 import cn.edu.zime.attendanceapp.R;
+import cn.edu.zime.base.domain.BaseHttpInfo;
 import cn.edu.zime.base.domain.ComStuPermission;
 import cn.edu.zime.base.domain.UserPermission;
 import cn.edu.zime.base.domain.ViceMoniPermission;
@@ -23,6 +25,8 @@ public class MainTabPub extends FragActivityBase {
 
 	public UserPermission uPermiss;
 	private int curFrag = -1;
+	
+	
 
 	private void switchFragment(int index) {
 		Fragment fragment = uPermiss.getThisFragments()[index];
@@ -34,6 +38,10 @@ public class MainTabPub extends FragActivityBase {
 
 		GridView grid = (GridView) this.findViewById(R.id.tab_grid);
 		grid.setNumColumns(uPermiss.getGrids().length);
+		
+		Intent it = getIntent();
+		FragActivityBase.httpInfo = (BaseHttpInfo) it.getSerializableExtra("httpInfo");
+		
 		//=== 需要自定义文字选这个
 		// SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(),
 		// uPermiss.getMaps(), R.layout.tab_grid, new String[] {

@@ -1,6 +1,9 @@
 package cn.edu.zime.base.activity;
 
 import java.io.IOException;
+import java.net.SocketException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -10,12 +13,14 @@ import cn.edu.zime.base.domain.BaseDlgMsg;
 import cn.edu.zime.base.domain.BaseHttpInfo;
 import cn.edu.zime.domain.CommonReqUri;
 import cn.edu.zime.utils.HttpUtil;
+import cn.edu.zime.utils.SharedUtil;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +28,8 @@ import android.os.Message;
 import android.util.Log;
 
 public abstract class ActivityBase extends Activity {
+	
+	protected SharedPreferences sp;
 
 	private static final int WORKCOMPLETED = 1;// 执行正常结束
 	private static final int WAITCANCEL = 2; // 取消
@@ -35,7 +42,7 @@ public abstract class ActivityBase extends Activity {
 	private boolean isReStart = false;
 	public ProgressDialog pd; //
 	public BaseHandler handler = new BaseHandler();
-	private BaseHttpInfo httpInfo;
+	protected BaseHttpInfo httpInfo;
 	private BaseDlgMsg dlgMsg;
 	public Thread myThread = null; // 长时间处理线程
 
@@ -242,28 +249,39 @@ public abstract class ActivityBase extends Activity {
 	 * @param jsonStr 发送请求的JSON字符串
 	 */
 	public void promptRemoteServIPChanged(String jsonStr){
-		(new AsyncTask<String, Object, String>(){
-
-			@Override
-			protected String doInBackground(String... params) {
-				try {
-					System.out.println("promptRemoteServIPChanged.........");
-					String retStr = HttpUtil.postReqAsJson(cru.getPromptServURL(), params[0]);
-					System.out.println("prompt successed ........");
-				} catch (ClientProtocolException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				return null;
-			}
-
-			@Override
-			protected void onPostExecute(String result) {
-				super.onPostExecute(result);
-			}
-			
-		}).execute(jsonStr);
+//		(new AsyncTask<String, Object, String>(){
+//
+//			@Override
+//			protected String doInBackground(String... params) {
+//				try {
+//					System.out.println("promptRemoteServIPChanged.........");
+//					String retStr = HttpUtil.postReqAsJson(cru.getPromptServURL(), params[0]);
+//					System.out.println("prompt successed ........");
+//				} catch (ClientProtocolException e) {
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//				return null;
+//			}
+//
+//			@Override
+//			protected void onPostExecute(String result) {
+//				super.onPostExecute(result);
+//			}
+//			
+//		}).execute(jsonStr);
+//		
+//		Map<String, String> map = new HashMap<String, String>();
+//		try {
+//			String curIP = HttpUtil.getLocalIP(getApplicationContext());
+//			Log.i("ActivityBase", "===========   curIP   ===========" + curIP);
+//			map.put("CUR_IP", curIP);
+//		} catch (SocketException e) {
+//			e.printStackTrace();
+//		}
+//
+//		SharedUtil.saveData(sp, map);
 	}
 
 	// show dialog =================== 交由子类调用 =====================

@@ -2,6 +2,9 @@ package cn.edu.zime.constant;
 
 public class Constant {
 
+	public static String CUR_IP = "";
+	public static String REMOTE_HOST = "";
+	
 	//===========   SQLite arguments =========
 	public static final String LOCAL_DB_NAME = "userDB";//database's name
 	//=========== Share preferences name ======

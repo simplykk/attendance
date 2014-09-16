@@ -97,7 +97,7 @@ public class HttpUtil {
 		Log.i(TAG, "Send data to :"+uri+" ========== and the data str:"+requestJson);
 		HttpPost post = new HttpPost(uri);
 		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
-		parameters.add(new BasicNameValuePair("requestJson", requestJson));
+		parameters.add(new BasicNameValuePair("attendanceClientJSON", requestJson));
 		post.setEntity(new UrlEncodedFormEntity(parameters, "UTF-8"));
 		HttpClient client = new DefaultHttpClient();
 		HttpResponse response = client.execute(post);

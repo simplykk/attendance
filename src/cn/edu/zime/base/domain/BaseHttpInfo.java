@@ -20,7 +20,14 @@ public class BaseHttpInfo implements Serializable {
 	private String retStr;
 	private String uri;
 	private String sendJSONStr;
+	private String retEntity;
 	
+	public String getRetEntity() {
+		return retEntity;
+	}
+	public void setRetEntity(String retEntity) {
+		this.retEntity = retEntity;
+	}
 	private String lastErrorStr;
 	private String dataType = "JSON"; //default JSON,other: FORM
 	

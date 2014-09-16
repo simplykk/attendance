@@ -16,6 +16,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,13 +31,15 @@ public abstract class FragActivityBase extends FragmentActivity {
 	private static final int WORKFAILED = 3; // 执行网络请求失败
 	
 	protected CommonReqUri cru = new CommonReqUri();
-	
+	protected SharedPreferences sp;
 
 	private boolean isWorking = false;
 	private boolean isReStart = false;
 	public ProgressDialog pd; //
 	public BaseHandler handler = new BaseHandler();
-	private BaseHttpInfo httpInfo;
+	public static BaseHttpInfo httpInfo;
+	
+
 	private BaseDlgMsg dlgMsg;
 	public Thread myThread = null; // 长时间处理线程
 
@@ -239,28 +242,28 @@ public abstract class FragActivityBase extends FragmentActivity {
 	 * @param jsonStr 发送请求的JSON字符串
 	 */
 	public void promptRemoteServIPChanged(String jsonStr){
-		(new AsyncTask<String, Object, String>(){
-
-			@Override
-			protected String doInBackground(String... params) {
-				try {
-					System.out.println("promptRemoteServIPChanged.........");
-					String retStr = HttpUtil.postReqAsJson(cru.getPromptServURL(), params[0]);
-					System.out.println("prompt successed ........");
-				} catch (ClientProtocolException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				return null;
-			}
-
-			@Override
-			protected void onPostExecute(String result) {
-				super.onPostExecute(result);
-			}
-			
-		}).execute(jsonStr);
+//		(new AsyncTask<String, Object, String>(){
+//
+//			@Override
+//			protected String doInBackground(String... params) {
+//				try {
+//					System.out.println("promptRemoteServIPChanged.........");
+//					String retStr = HttpUtil.postReqAsJson(cru.getPromptServURL(), params[0]);
+//					System.out.println("prompt successed ........");
+//				} catch (ClientProtocolException e) {
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//				return null;
+//			}
+//
+//			@Override
+//			protected void onPostExecute(String result) {
+//				super.onPostExecute(result);
+//			}
+//			
+//		}).execute(jsonStr);
 	}
 
 	// show dialog =================== 交由子类调用 =====================
