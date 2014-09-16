@@ -1,5 +1,7 @@
 package cn.edu.zime.base.activity;
 
+import java.net.SocketException;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,7 @@ import cn.edu.zime.base.domain.BaseHttpInfo;
 import cn.edu.zime.base.domain.ComStuPermission;
 import cn.edu.zime.base.domain.UserPermission;
 import cn.edu.zime.base.domain.ViceMoniPermission;
+import cn.edu.zime.utils.HttpUtil;
 
 /**
  * 该类只负责载入各个子页面和进行一些页面切换操作，不涉及任何网络数据访问即本地数据库操作。
@@ -25,6 +28,8 @@ public class MainTabPub extends FragActivityBase {
 
 	public UserPermission uPermiss;
 	private int curFrag = -1;
+	
+	private String userCode;
 	
 	
 
@@ -41,6 +46,7 @@ public class MainTabPub extends FragActivityBase {
 		
 		Intent it = getIntent();
 		FragActivityBase.httpInfo = (BaseHttpInfo) it.getSerializableExtra("httpInfo");
+		userCode = (String) it.getSerializableExtra("userCode");
 		
 		//=== 需要自定义文字选这个
 		// SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(),
@@ -83,7 +89,11 @@ public class MainTabPub extends FragActivityBase {
 
 		initGridViews();
 
-		promptRemoteServIPChanged("");
+		try {
+			promptRemoteServIPChanged(userCode,HttpUtil.getLocalIP(getApplicationContext()),"");
+		} catch (SocketException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

@@ -19,7 +19,7 @@
     <string name="fragmain_username_pre">用户姓名：</string>
     <string name="fragmain_class_pre">班级：</string>
     <string name="fragmain_phone_pre">手机号码：</string>
-    <string name="fragmain_tea_pre">班主任：</string>
+    <string name="fragmain_sex_pre">性别：</string>
     
     <string name="fragreq_fromtime">从：</string>
     <string name="fragreq_totime">到：</string>

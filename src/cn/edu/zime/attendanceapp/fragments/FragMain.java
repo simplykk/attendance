@@ -6,11 +6,6 @@ import java.lang.reflect.InvocationTargetException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cn.edu.zime.attendanceapp.R;
-import cn.edu.zime.base.activity.FragActivityBase;
-import cn.edu.zime.base.domain.BaseHttpInfo;
-import cn.edu.zime.domain.Student;
-import cn.edu.zime.utils.JSONUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -18,10 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import cn.edu.zime.attendanceapp.R;
+import cn.edu.zime.base.activity.FragActivityBase;
+import cn.edu.zime.base.domain.BaseHttpInfo;
+import cn.edu.zime.domain.Student;
+import cn.edu.zime.domain.Teacher;
+import cn.edu.zime.utils.JSONUtil;
 
 public class FragMain extends Fragment {
 	
-	private TextView txvUsername,txvClass,txvTeacher,txvPhone;
+	private TextView txvUsername,txvClass,txvSex,txvPhone;
 	View thisView;
 	
 	@Override
@@ -30,43 +31,55 @@ public class FragMain extends Fragment {
 		thisView = inflater.inflate(R.layout.frag_main, container,false);
 		txvUsername = (TextView) thisView.findViewById(R.id.txv_username);
 		txvClass = (TextView) thisView.findViewById(R.id.txv_class);
-		txvTeacher = (TextView) thisView.findViewById(R.id.txv_tea);
+		txvSex = (TextView) thisView.findViewById(R.id.txv_sex);
 		txvPhone = (TextView) thisView.findViewById(R.id.txv_phone);
 		
 		BaseHttpInfo httpInfo = FragActivityBase.httpInfo;
 		Log.i("FragMain     ======     ", httpInfo.getRetStr());
 		
-		JSONObject obj;
-		try {
-			obj = new JSONObject(httpInfo.getRetStr());
-			Log.i("Student     ======     ", obj.getString("retEntity").toString());
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		JSONObject obj;
+//		try {
+//			obj = new JSONObject(httpInfo.getRetStr());
+//			Log.i("Student     ======     ", obj.getString("retEntity").toString());
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//		}
 
 		
 		
 		
-		Student student = new Student();
+		
 		try {
 			JSONObject json = new JSONObject(httpInfo.getRetStr());
 			JSONObject retEntity = new JSONObject(json.get("retEntity").toString());
-			if (retEntity.get("stuCode") != null && !"".equals(retEntity.get("stuCode"))) {
-				
-			} else {
-				
-			}
-			JSONUtil.jsonToBean(retEntity,student);
+			String userType = retEntity.getString("userType");
+			if (userType != null && !"".equals(userType)) {
+				if ("STUDENT".equals(userType)) {
+					Student student = new Student();
+					JSONUtil.jsonToBean(retEntity,student);
+					
+					Log.i("Student     ======     ", student.getStuCode());
+					
+					txvUsername.setText(student.getStuName());
+					txvPhone.setText(student.getPhone());
+					//txvClass.setText(String.valueOf(student.getClassId()));
+					txvSex.setText(student.getSex());
+					
+				} else if ("TEACHER".equals(userType)) {
+					Teacher teacher = new Teacher();
+					JSONUtil.jsonToBean(retEntity, teacher);
+					
+					txvUsername.setText(teacher.getTeaName());
+					txvPhone.setText(teacher.getPhone());
+					//txvClass.setText(String.valueOf(student.getClassId()));
+					txvSex.setText(teacher.getSex());
+				}
+			} 
 			
-			Log.i("Student     ======     ", student.getStuCode());
-		} catch (IntrospectionException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
+			
+			
+			
+		} catch (Exception e){
 			e.printStackTrace();
 		}
 

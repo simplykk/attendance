@@ -1,6 +1,9 @@
 package cn.edu.zime.base.activity;
 
 import java.io.IOException;
+import java.net.SocketException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -8,8 +11,12 @@ import org.json.JSONObject;
 
 import cn.edu.zime.base.domain.BaseDlgMsg;
 import cn.edu.zime.base.domain.BaseHttpInfo;
+import cn.edu.zime.constant.Constant;
 import cn.edu.zime.domain.CommonReqUri;
+import cn.edu.zime.domain.IpMapping;
 import cn.edu.zime.utils.HttpUtil;
+import cn.edu.zime.utils.JSONUtil;
+import cn.edu.zime.utils.SharedUtil;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -177,6 +184,7 @@ public abstract class FragActivityBase extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		sp = getSharedPreferences(Constant.SHARED_NAME, 0);
 		context = this.getParent(); // 因为子活动中,ProgressDialog.show会出异常,所以要传入其父类
 		if (context == null) // 取父窗口,当父窗口关闭时,会有问题. 所以,要么就取框架类对象
 			context = this;
@@ -239,31 +247,58 @@ public abstract class FragActivityBase extends FragmentActivity {
 	 *  <li>本地IP地址发生变化时</li>
 	 * </ul>
 	 * @param uri 请求的远程服务器URI
-	 * @param jsonStr 发送请求的JSON字符串
+	 * @param userCode 
+	 * @param userIp
+	 * @param userIpV6
 	 */
-	public void promptRemoteServIPChanged(String jsonStr){
-//		(new AsyncTask<String, Object, String>(){
-//
-//			@Override
-//			protected String doInBackground(String... params) {
-//				try {
-//					System.out.println("promptRemoteServIPChanged.........");
-//					String retStr = HttpUtil.postReqAsJson(cru.getPromptServURL(), params[0]);
-//					System.out.println("prompt successed ........");
-//				} catch (ClientProtocolException e) {
-//					e.printStackTrace();
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//				return null;
-//			}
-//
-//			@Override
-//			protected void onPostExecute(String result) {
-//				super.onPostExecute(result);
-//			}
-//			
-//		}).execute(jsonStr);
+	public void promptRemoteServIPChanged(String userCode,String userIp,String userIpV6){
+		IpMapping mapping = new IpMapping();
+		mapping.setUserCode(userCode);
+		mapping.setUserIp(userIp);
+		mapping.setUserIpV6(userIpV6);
+		JSONObject json = null;
+		try {
+			json = JSONUtil.beanToJson(mapping);
+		} catch (InstantiationException e1) {
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			e1.printStackTrace();
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+		}
+		(new AsyncTask<String, Object, String>(){
+
+			@Override
+			protected String doInBackground(String... params) {
+				try {
+					System.out.println("promptRemoteServIPChanged.........");
+					String retStr = HttpUtil.postReqAsJson(cru.getPromptServURL(), params[0]);
+					System.out.println("prompt successed ........");
+				} catch (ClientProtocolException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return null;
+			}
+
+			@Override
+			protected void onPostExecute(String result) {
+				super.onPostExecute(result);
+			}
+			
+		}).execute(json.toString());
+		
+		Map<String, String> map = new HashMap<String, String>();
+		try {
+			String curIP = HttpUtil.getLocalIP(getApplicationContext());
+			Log.i("ActivityBase", "===========   curIP   ===========" + curIP);
+			map.put("CUR_IP", curIP);
+		} catch (SocketException e) {
+			e.printStackTrace();
+		}
+
+		SharedUtil.saveData(sp, map);
 	}
 
 	// show dialog =================== 交由子类调用 =====================

@@ -40,7 +40,7 @@ public class Login extends ActivityBase implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		sp = getSharedPreferences(Constant.SHARED_NAME, 0);
+//		sp = getSharedPreferences(Constant.SHARED_NAME, 0);
 		// ========= find view by id =============
 		edtUserName = (EditText) findViewById(R.id.edt_username);
 		edtPassword = (EditText) findViewById(R.id.edt_password);
@@ -50,7 +50,8 @@ public class Login extends ActivityBase implements OnClickListener {
 
 		loadConfig();
 
-		promptRemoteServIPChanged("{current_ip:,'"+Constant.CUR_IP+"'}");
+		
+//		promptRemoteServIPChanged();
 	}
 
 
@@ -75,7 +76,7 @@ public class Login extends ActivityBase implements OnClickListener {
 		edtUserName.setText(map.get("USERNAME"));
 		Constant.CUR_IP = map.get("CUR_IP");
 		//Constant.REMOTE_HOST = map.get("REMOTE_HOST"); // 根据设定的IP
-		Constant.REMOTE_HOST = "http://192.168.181.56";
+		Constant.REMOTE_HOST = "http://192.168.1.104";
 	}
 
 	@Override
@@ -140,6 +141,7 @@ public class Login extends ActivityBase implements OnClickListener {
 				R.drawable.button_login_zh));
 		Intent intent = new Intent(getApplicationContext(), MainTabPub.class);
 		intent.putExtra("httpInfo", httpInfo);
+		intent.putExtra("userCode", edtUserName.getText().toString());
 		startActivity(intent);
 	}
 

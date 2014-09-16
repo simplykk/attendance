@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import cn.edu.zime.base.domain.BaseDlgMsg;
 import cn.edu.zime.base.domain.BaseHttpInfo;
+import cn.edu.zime.constant.Constant;
 import cn.edu.zime.domain.CommonReqUri;
 import cn.edu.zime.utils.HttpUtil;
 import cn.edu.zime.utils.SharedUtil;
@@ -180,6 +181,7 @@ public abstract class ActivityBase extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		sp = getSharedPreferences(Constant.SHARED_NAME, 0);
 		context = this.getParent(); // 因为子活动中,ProgressDialog.show会出异常,所以要传入其父类
 		if (context == null) // 取父窗口,当父窗口关闭时,会有问题. 所以,要么就取框架类对象
 			context = this;

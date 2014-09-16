@@ -144,8 +144,8 @@ public final class R {
         public static final int txv_phone=0x7f08000e;
         public static final int txv_phone_pre=0x7f08000d;
         public static final int txv_reason=0x7f080017;
-        public static final int txv_tea=0x7f080011;
-        public static final int txv_tea_pre=0x7f080010;
+        public static final int txv_sex=0x7f080011;
+        public static final int txv_sex_pre=0x7f080010;
         public static final int txv_totime=0x7f080015;
         public static final int txv_type=0x7f080019;
         public static final int txv_username=0x7f080001;
@@ -221,7 +221,7 @@ public final class R {
         public static final int fragmain_btnupdate=0x7f050016;
         public static final int fragmain_class_pre=0x7f05000b;
         public static final int fragmain_phone_pre=0x7f05000c;
-        public static final int fragmain_tea_pre=0x7f05000d;
+        public static final int fragmain_sex_pre=0x7f05000d;
         public static final int fragmain_userlogo=0x7f050009;
         public static final int fragmain_username_pre=0x7f05000a;
         public static final int fragreq_fromtime=0x7f05000e;

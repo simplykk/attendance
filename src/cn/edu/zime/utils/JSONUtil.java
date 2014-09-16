@@ -93,14 +93,19 @@ public class JSONUtil {
 	 * @throws JSONException
 	 */
 	public static <T> T jsonToBean(JSONObject json, T targetBean) throws IntrospectionException, IllegalAccessException, InvocationTargetException, JSONException {
-		BeanInfo beanInfo = Introspector.getBeanInfo(targetBean.getClass());
-		PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();
+//		BeanInfo beanInfo = Introspector.getBeanInfo(targetBean.getClass());
+//		PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();
 		
-		for (PropertyDescriptor pd : pds) {
-			String name = pd.getName();
+		Field[] fields = targetBean.getClass().getDeclaredFields();
+		
+		for (Field field : fields) {
+			field.setAccessible(true);
+//			String name = pd.getName();
+			String name = field.getName();
 			
 			if (json.has(name)) {
-				pd.getWriteMethod().invoke(targetBean, json.get(name));
+				//pd.getWriteMethod().invoke(targetBean, json.get(name));
+				field.set(targetBean, json.get(name));
 			}
 		}
 		return targetBean;
