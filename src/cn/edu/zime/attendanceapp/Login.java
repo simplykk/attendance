@@ -76,7 +76,7 @@ public class Login extends ActivityBase implements OnClickListener {
 		edtUserName.setText(map.get("USERNAME"));
 		Constant.CUR_IP = map.get("CUR_IP");
 		//Constant.REMOTE_HOST = map.get("REMOTE_HOST"); // 根据设定的IP
-		Constant.REMOTE_HOST = "http://192.168.1.104";
+		Constant.REMOTE_HOST = "http://192.168.1.104:8080";
 	}
 
 	@Override
@@ -110,8 +110,8 @@ public class Login extends ActivityBase implements OnClickListener {
 				String uri = cru.getLoginReq();
 
 				System.out.println("do working in login......................."+json.toString());
-				doWorking(uri,json.toString());
-				//startActivity(new Intent(getApplicationContext(), MainTabPub.class));
+				//doWorking(uri,json.toString());
+				startActivity(new Intent(getApplicationContext(), MainTabPub.class));
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {

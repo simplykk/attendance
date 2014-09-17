@@ -19,6 +19,8 @@ public abstract class UserPermission implements Serializable {
 	TabGrids[] grids;
 	Fragment[] thisFragments;
 	
+	Object container;
+	
 	
 	
 	public TabGrids[] getGrids() {
@@ -39,7 +41,7 @@ public abstract class UserPermission implements Serializable {
 	}
 
 	protected abstract void initGrids(); 
-	protected abstract void initFragments();
+	protected abstract void initFragments(Object container);
 	
 	public List<Map<String,Object>> getMaps () {
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();

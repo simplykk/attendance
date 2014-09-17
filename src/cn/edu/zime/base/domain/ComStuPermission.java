@@ -15,8 +15,13 @@ public class ComStuPermission extends UserPermission implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4996450954215172876L;
-	
-	public ComStuPermission () {
+
+	public ComStuPermission() {
+		initGrids();
+	}
+
+	public ComStuPermission(Object container) {
+		this.container = container;
 		initGrids();
 	}
 
@@ -26,18 +31,19 @@ public class ComStuPermission extends UserPermission implements Serializable {
 				new TabGrids(R.drawable.logo_request_long, "请假"),
 				new TabGrids(R.drawable.logo_updatereq_long, "更改请假"),
 				new TabGrids(R.drawable.logo_history_long, "历史记录") };
-		initFragments();
+		initFragments(container);
 	}
-	
 
 	@Override
-	protected void initFragments() {
-		thisFragments = new Fragment[]{
-				new FragMain(),
-				new FragRequest(),
-				new FragCheckoutReq(),
-				new FragHistory()
-		};
+	protected void initFragments(Object container) {
+		
+		if (container == null) {
+			System.out.println("========= NULL ==========");
+			thisFragments = new Fragment[] { new FragMain(), new FragRequest(),
+					new FragCheckoutReq(), new FragHistory() };
+		} else {
+			thisFragments = new Fragment[] { new FragMain(container), new FragRequest(container),
+					new FragCheckoutReq(container), new FragHistory(container) };
+		}
 	}
-
 }

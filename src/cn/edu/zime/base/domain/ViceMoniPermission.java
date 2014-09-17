@@ -17,8 +17,13 @@ public class ViceMoniPermission extends UserPermission implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5222666136542064497L;
+
+	public ViceMoniPermission() {
+		initGrids();
+	}
 	
-	public ViceMoniPermission () {
+	public ViceMoniPermission (Object container) {
+		this.container = container;
 		initGrids();
 	}
 
@@ -29,19 +34,21 @@ public class ViceMoniPermission extends UserPermission implements Serializable {
 				new TabGrids(R.drawable.ic_launcher, "待审核信息"),
 				new TabGrids(R.drawable.ic_launcher, "确认信息"),
 				new TabGrids(R.drawable.ic_launcher, "历史记录") };
-		initFragments();
+		initFragments(container);
 	}
 
 	@Override
-	protected void initFragments() {
-		thisFragments = new Fragment[]{
-				new FragMain(),
-				new FragRequest(),
-				new FragCheckoutReq(),
-				new FragMonitorConfirm(),
-				new FragHistory()
-		};
-		
+	protected void initFragments(Object container) {
+		if (container == null) {
+			thisFragments = new Fragment[] { new FragMain(), new FragRequest(),
+					new FragCheckoutReq(), new FragMonitorConfirm(),
+					new FragHistory() };
+		} else {
+			thisFragments = new Fragment[] { new FragMain(container), new FragRequest(container),
+					new FragCheckoutReq(container), new FragMonitorConfirm(container),
+					new FragHistory(container) };
+		}
+
 	}
 
 }

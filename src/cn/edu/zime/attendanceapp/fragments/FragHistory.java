@@ -7,15 +7,49 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragHistory extends Fragment {
+public class FragHistory extends PubFragment {
+	public FragHistory() {
+		super();
+	}
 
-View thisView;
+	public FragHistory(Object container) {
+		super();
+		this.container = container;
+	}
 	
+	private Object container;
+
+	View thisView;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		thisView = inflater.inflate(R.layout.frag_history, container,false);
+		thisView = inflater.inflate(R.layout.frag_history, container, false);
 		return thisView;
 	}
-	
+
+	@Override
+	protected void doWording() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onCompleted() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onFialed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onCancel() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

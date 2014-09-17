@@ -12,6 +12,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 import cn.edu.zime.attendanceapp.R;
+import cn.edu.zime.attendanceapp.fragments.PubFragment;
 import cn.edu.zime.base.domain.BaseHttpInfo;
 import cn.edu.zime.base.domain.ComStuPermission;
 import cn.edu.zime.base.domain.UserPermission;
@@ -32,11 +33,24 @@ public class MainTabPub extends FragActivityBase {
 	private String userCode;
 	
 	
+	
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
+
+	private PubFragment thisFrag;
+	
+	
 
 	private void switchFragment(int index) {
 		Fragment fragment = uPermiss.getThisFragments()[index];
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.tab_container, fragment).commit();
+		thisFrag  = (PubFragment) fragment;
 	}
 
 	private void initGridViews() {
@@ -46,8 +60,8 @@ public class MainTabPub extends FragActivityBase {
 		
 		Intent it = getIntent();
 		FragActivityBase.httpInfo = (BaseHttpInfo) it.getSerializableExtra("httpInfo");
-		userCode = (String) it.getSerializableExtra("userCode");
-		
+		//userCode = (String) it.getSerializableExtra("userCode");
+		userCode = "120311120101";
 		//=== 需要自定义文字选这个
 		// SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(),
 		// uPermiss.getMaps(), R.layout.tab_grid, new String[] {
@@ -85,7 +99,7 @@ public class MainTabPub extends FragActivityBase {
 		setContentView(R.layout.main_tab_pub);
 
 		// 初始化操作＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-		uPermiss = new ComStuPermission();
+		uPermiss = new ComStuPermission(this);
 
 		initGridViews();
 
@@ -95,24 +109,34 @@ public class MainTabPub extends FragActivityBase {
 			e.printStackTrace();
 		}
 	}
+	
+	public void subWorking (String uri,String sendJSONStr) {
+		System.out.println("sub working...");
+		this.doWorking(uri, sendJSONStr);
+	}
 
 	@Override
 	public void onWorkCancel() {
 		// TODO Auto-generated method stub
 		System.out.println("========= MainTabPub onWorkCancel ========");
-
+		thisFrag.setHttpInfo(httpInfo);
+		thisFrag.onCancel();
 	}
 
 	@Override
 	public void onWorkCompleted() {
 		// TODO Auto-generated method stub
 		System.out.println("========= MainTabPub onWorkCompleted ========");
+		thisFrag.setHttpInfo(httpInfo);
+		thisFrag.onCompleted();
 	}
 
 	@Override
 	public void OnWorkFailed() {
 		// TODO Auto-generated method stub
 		System.out.println("========= MainTabPub onWorkFailed ========");
+		thisFrag.setHttpInfo(httpInfo);
+		thisFrag.onFialed();
 	}
 
 }

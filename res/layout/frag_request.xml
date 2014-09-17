@@ -14,6 +14,23 @@
             style="@style/fragmain_txv"
             android:text="@string/fragreq_fromtime" />
 
+        <Button
+            android:id="@+id/edtdate"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+
+        <!-- <TextView -->
+        <!-- android:id="@+id/txvchoosetime" -->
+        <!-- style="@style/wrap_wrap" -->
+        <!-- android:layout_marginLeft="10dp" -->
+        <!-- android:text="@string/strsettimes" /> -->
+
+        <Button
+            android:id="@+id/edttime"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
         <!--
         <DatePicker 
             android:id="@+id/date_fromtime"
@@ -36,6 +53,22 @@
             android:id="@+id/txv_totime"
             style="@style/fragmain_txv"
             android:text="@string/fragreq_totime" />
+
+        <Button
+            android:id="@+id/edtlastdate"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+        <!-- <TextView -->
+        <!-- android:id="@+id/txvlasttime" -->
+        <!-- style="@style/wrap_wrap" -->
+        <!-- android:layout_marginLeft="10dp" -->
+        <!-- android:text="@string/strsettimes" /> -->
+
+        <Button
+            android:id="@+id/edtlasttimeinfo"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
         <!--
         <DatePicker 
             android:id="@+id/date_totime"
@@ -60,10 +93,10 @@
             android:text="@string/fragreq_reason" />
 
         <EditText
-            android:hint="@string/fragreq_reason_hint"
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:background="@drawable/bk_reason"
+            android:hint="@string/fragreq_reason_hint"
             android:lines="3" />
     </LinearLayout>
 
@@ -95,25 +128,23 @@
             android:id="@+id/txv_account"
             style="@style/fragmain_txv" />
     </LinearLayout>
-    <LinearLayout 
+
+    <LinearLayout
         android:id="@+id/llayout_btn"
         style="@style/fragmain_llayout_content"
-        android:layout_margin="0dp"
-        >
-        
-         <Button 
-           style="@style/fragmain_btn"
-        android:id="@+id/btn_ok"
-        android:text="@string/fragmain_btnok"
-        android:layout_margin="10dp"
-        />
+        android:layout_margin="0dp" >
+
         <Button
-            android:layout_margin="10dp"
-            android:id="@+id/btn_cancel"
-            android:text="@string/fragmain_btncancel"
+            android:id="@+id/btn_ok"
             style="@style/fragmain_btn"
-            />
-        
+            android:layout_margin="10dp"
+            android:text="@string/fragmain_btnok" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/fragmain_btn"
+            android:layout_margin="10dp"
+            android:text="@string/fragmain_btncancel" />
     </LinearLayout>
 
 </LinearLayout>
