@@ -1,8 +1,14 @@
 package cn.edu.zime.attendanceapp.fragments;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import cn.edu.zime.attendanceapp.R;
+import cn.edu.zime.base.activity.MainTabPub;
+import cn.edu.zime.domain.CommonReqUri;
+import cn.edu.zime.domain.Request;
+import cn.edu.zime.utils.JSONUtil;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -11,11 +17,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class FragRequest extends PubFragment implements OnClickListener {
+	Request updateReq = new Request();
+
 	public FragRequest() {
 		super();
 	}
@@ -25,10 +38,18 @@ public class FragRequest extends PubFragment implements OnClickListener {
 		this.container = container;
 	}
 
-	private Object container;
-	View thisView;
+	CommonReqUri cru = new CommonReqUri();
 
-	private Button btn_ok, btn_cancel;
+	private Object container;
+
+	View thisView;
+	private Button btn_ok, btn_cancel, btnBeginDate, btnBeginTime,
+			btnEndDate, btnEndTime;
+
+	private EditText edtReason;
+	private Spinner spnType;
+
+	private String[] spnTypeStr = new String[] { "病假", "事假", "公假" };
 
 	private int curYear;
 	private int curMonth;
@@ -50,29 +71,53 @@ public class FragRequest extends PubFragment implements OnClickListener {
 		curHour = calendar.get(Calendar.HOUR);// 得到系统时
 		curMinute = calendar.get(Calendar.MINUTE);// 得到系统分
 
-		// 设置默认值
-		((Button) thisView.findViewById(R.id.edtdate)).setText(curYear + "-"
-				+ formatTimeTwoNumber(curMonth + 1) + "-"
-				+ formatTimeTwoNumber(curDate));
-		((Button) thisView.findViewById(R.id.edttime))
-				.setText(formatTimeTwoNumber(curHour) + "-"
-						+ formatTimeTwoNumber(curMinute));
-		((Button) thisView.findViewById(R.id.edtlastdate)).setText(curYear
-				+ "-" + formatTimeTwoNumber(curMonth + 1) + "-"
-				+ formatTimeTwoNumber(curDate));
-		((Button) thisView.findViewById(R.id.edtlasttimeinfo))
-				.setText(formatTimeTwoNumber(curHour) + "-"
-						+ formatTimeTwoNumber(curMinute));
+		// find view by id
+		btn_ok = (Button) thisView.findViewById(R.id.btn_ok);
+		// btn_cancel = (Button) thisView.findViewById(R.id.btn_cancel);
+		btnBeginDate = (Button) thisView.findViewById(R.id.edtdate);
+		btnBeginTime = (Button) thisView.findViewById(R.id.edttime);
+		btnEndDate = (Button) thisView.findViewById(R.id.edtlastdate);
+		btnEndTime = (Button) thisView.findViewById(R.id.edtlasttimeinfo);
+		edtReason = (EditText) thisView.findViewById(R.id.edtreson);
+		spnType = (Spinner) thisView.findViewById(R.id.spn_type);
 
-		((Button) thisView.findViewById(R.id.btn_ok)).setOnClickListener(this);
-		((Button) thisView.findViewById(R.id.btn_cancel))
-				.setOnClickListener(this);
-		((Button) thisView.findViewById(R.id.edtdate)).setOnClickListener(this);
-		((Button) thisView.findViewById(R.id.edttime)).setOnClickListener(this);
-		((Button) thisView.findViewById(R.id.edtlastdate))
-				.setOnClickListener(this);
-		((Button) thisView.findViewById(R.id.edtlasttimeinfo))
-				.setOnClickListener(this);
+		btn_ok.setOnClickListener(this);
+		// btn_cancel.setOnClickListener(this);
+		btnBeginDate.setOnClickListener(this);
+		btnBeginTime.setOnClickListener(this);
+		btnEndDate.setOnClickListener(this);
+		btnEndTime.setOnClickListener(this);
+
+		// 设置默认值
+		btnBeginDate.setText(curYear + "-" + formatTimeTwoNumber(curMonth + 1)
+				+ "-" + formatTimeTwoNumber(curDate));
+		btnBeginTime.setText(formatTimeTwoNumber(curHour) + ":"
+				+ formatTimeTwoNumber(curMinute));
+		btnEndDate.setText(curYear + "-" + formatTimeTwoNumber(curMonth + 1)
+				+ "-" + formatTimeTwoNumber(curDate));
+		btnEndTime.setText(formatTimeTwoNumber(curHour) + ":"
+				+ formatTimeTwoNumber(curMinute));
+
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+				android.R.layout.simple_dropdown_item_1line, spnTypeStr);
+		spnType.setAdapter(adapter);
+		spnType.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				updateReq.setRequestTypeCode("D013000" + (position + 1));
+				System.out.println("------ check state  ---->"
+						+ updateReq.getCheckState());
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 
 		return thisView;
 	}
@@ -93,17 +138,28 @@ public class FragRequest extends PubFragment implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btn_ok:// 确定按钮的设定
 			// Start();// 确定按钮的事件
-			break;
-		case R.id.btn_cancel:// 取消按钮的设定
-			// Intent intent = new Intent();
-			// if (APPData.flag == 1) {
-			// if (APPData.stutype == 1) {
-			// intent.setClass(RequestInfo.this, User_monitor.class);
-			// } else {
-			// intent.setClass(RequestInfo.this, User_stu.class);
-			// }
-			// }
-			// startActivity(intent);
+			// Start();// 确定按钮的事件
+//			if (updateReq == null) {
+//				System.out.println("updateReq is null!");
+//				return;
+//			}
+			updateReq.setRequestReason(edtReason.getText().toString());
+			String transactorId = ((MainTabPub) container).getTransactorId();
+			updateReq.setTransactorId(transactorId);
+			//updateReq.setRequestTime(new Date(curYear-1900,curMonth-1,curDate,curHour,curMinute));
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			updateReq.setRequestTime(sdf.format(new Date()));
+			try {
+				updateReq.setStuCode(((MainTabPub)container).getUserCode());
+//				updateReq.setBeginTime(sdf.parse(btnBeginDate.getText().toString().trim()+"-"+btnBeginTime.getText().toString().trim()));
+//				updateReq.setEndTime(sdf.parse(btnEndDate.getText().toString().trim()+"-"+btnEndTime.getText().toString().trim()));
+				updateReq.setRequestTypeCode("D0130001");
+				updateReq.setBeginTime(btnBeginDate.getText().toString().trim()+" "+btnBeginTime.getText().toString().trim()+":00");
+				updateReq.setEndTime(btnEndDate.getText().toString().trim()+" "+btnEndTime.getText().toString().trim()+":00");
+				((MainTabPub)container).subWorking(cru.getChargeReq(), JSONUtil.beanToJson(updateReq).toString());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			break;
 		case R.id.edtdate:// 起始设置日期
 			DatePickerDialog beginDateDlg = new DatePickerDialog(getActivity(),
@@ -185,25 +241,25 @@ public class FragRequest extends PubFragment implements OnClickListener {
 	@Override
 	protected void doWording() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onCompleted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onFialed() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onCancel() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

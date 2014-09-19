@@ -8,6 +8,7 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
@@ -97,6 +98,32 @@ public class HttpUtil {
 		Log.i(TAG, "Send data to :"+uri+" ========== and the data str:"+requestJson);
 		HttpPost post = new HttpPost(uri);
 		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
+		parameters.add(new BasicNameValuePair("attendanceClientJSON", requestJson));
+		post.setEntity(new UrlEncodedFormEntity(parameters, "UTF-8"));
+		HttpClient client = new DefaultHttpClient();
+		HttpResponse response = client.execute(post);
+		if (response.getStatusLine().getStatusCode()==HttpStatus.SC_OK) {
+			String retStr = EntityUtils.toString(response.getEntity());
+			Log.i(TAG, "=================response str:"+retStr);
+			return retStr;
+		}
+		
+		return response.getStatusLine().getStatusCode()+"ERROR";
+	}
+	
+	/**
+	 * @param requestJson 向服务器发送的JSON请求字符串,可以添加额外的参数
+	 * @return 返回服务器响应的结果,如果响应的状态码不是200，则返回状态码+"ERROR"，提示后续处理
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
+	public static String postReqAsJsonAddParam(String uri,String requestJson,Map<String,String> param) throws ClientProtocolException, IOException{
+		Log.i(TAG, "Send data to :"+uri+" ========== and the data str:"+requestJson);
+		HttpPost post = new HttpPost(uri);
+		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
+		for (Map.Entry<String,String> entry : param.entrySet()) {
+			parameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+		}
 		parameters.add(new BasicNameValuePair("attendanceClientJSON", requestJson));
 		post.setEntity(new UrlEncodedFormEntity(parameters, "UTF-8"));
 		HttpClient client = new DefaultHttpClient();

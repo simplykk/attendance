@@ -105,7 +105,13 @@ public class JSONUtil {
 			
 			if (json.has(name)) {
 				//pd.getWriteMethod().invoke(targetBean, json.get(name));
-				field.set(targetBean, json.get(name));
+				Object obj = json.get(name);
+				if (obj instanceof Long) {
+					String str = String.valueOf(obj);
+					field.set(targetBean, str);
+				} else {
+					field.set(targetBean, obj);
+				}
 			}
 		}
 		return targetBean;

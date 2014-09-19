@@ -115,14 +115,14 @@
 
                 <Button
                     android:id="@+id/btnfinalsubmit"
-                    style="@style/wrap_wrap"
+                    style="@style/match_wrap"
                     android:layout_marginRight="30dp"
                     android:text="@string/btnsubmitstr" />
 
-                <Button
+                <!-- <Button
                     android:id="@+id/btnfinalcencel"
                     style="@style/wrap_wrap"
-                    android:text="@string/btncencelstr" />
+                    android:text="@string/btncencelstr" /> -->
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

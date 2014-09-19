@@ -93,6 +93,7 @@
             android:text="@string/fragreq_reason" />
 
         <EditText
+            android:id="@+id/edtreson"
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:background="@drawable/bk_reason"
@@ -140,11 +141,11 @@
             android:layout_margin="10dp"
             android:text="@string/fragmain_btnok" />
 
-        <Button
+       <!--  <Button
             android:id="@+id/btn_cancel"
             style="@style/fragmain_btn"
             android:layout_margin="10dp"
-            android:text="@string/fragmain_btncancel" />
+            android:text="@string/fragmain_btncancel" /> -->
     </LinearLayout>
 
 </LinearLayout>

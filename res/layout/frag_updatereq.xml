@@ -91,14 +91,12 @@
             android:text="@string/fragreq_reason" />
 
         <EditText
-                android:id="@+id/edtreson"
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:hint="@string/resonhint"
-                android:inputType="textMultiLine"
-                android:textSize="16sp" />
+            android:id="@+id/edtreson"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:background="@drawable/bk_reason"
+            android:hint="@string/fragreq_reason_hint"
+            android:lines="3" />
     </LinearLayout>
 
     <LinearLayout
@@ -141,12 +139,12 @@
         android:text="@string/fragmain_btnupdate"
         android:layout_margin="10dp"
         />
-        <Button
+        <!-- <Button
             android:layout_margin="10dp"
             android:id="@+id/btn_cancel"
             android:text="@string/fragmain_btncancel"
             style="@style/fragmain_btn"
-            />
+            /> -->
         
     </LinearLayout>
    

@@ -16,6 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -50,6 +53,10 @@ public class FragCheckoutReq extends PubFragment implements OnClickListener {
 
 	private EditText edtReason;
 	private Spinner spnType;
+	
+	private String[] spnTypeStr = new String []{
+			"病假","事假","公假"
+	};
 
 	private int curYear;
 	private int curMonth;
@@ -72,7 +79,7 @@ public class FragCheckoutReq extends PubFragment implements OnClickListener {
 
 		// find view by id
 		btn_update = (Button) thisView.findViewById(R.id.btn_update);
-		btn_cancel = (Button) thisView.findViewById(R.id.btn_cancel);
+//		btn_cancel = (Button) thisView.findViewById(R.id.btn_cancel);
 		btnBeginDate = (Button) thisView.findViewById(R.id.edtdate);
 		btnBeginTime = (Button) thisView.findViewById(R.id.edttime);
 		btnEndDate = (Button) thisView.findViewById(R.id.edtlastdate);
@@ -81,11 +88,30 @@ public class FragCheckoutReq extends PubFragment implements OnClickListener {
 		spnType = (Spinner) thisView.findViewById(R.id.spn_type);
 		
 		btn_update.setOnClickListener(this);
-		btn_cancel.setOnClickListener(this);
+//		btn_cancel.setOnClickListener(this);
 		btnBeginDate.setOnClickListener(this);
 		btnBeginTime.setOnClickListener(this);
 		btnEndDate.setOnClickListener(this);
 		btnEndTime.setOnClickListener(this);
+		
+		ArrayAdapter<String>  adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,spnTypeStr);
+		spnType.setAdapter(adapter);
+		spnType.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				updateReq.setRequestTypeCode("D013000"+(position+1));
+				System.out.println("------ check state  ---->"+updateReq.getCheckState());
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 
 		doWording();
 
@@ -135,6 +161,8 @@ public class FragCheckoutReq extends PubFragment implements OnClickListener {
 //				return;
 //			}
 			updateReq.setRequestReason(edtReason.getText().toString());
+//			String transactorId = ((MainTabPub)container).getTransactorId();
+//			updateReq.setTransactorId(transactorId);
 			//updateReq.setRequestTime(new Date(curYear-1900,curMonth-1,curDate,curHour,curMinute));
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			updateReq.setRequestTime(sdf.format(new Date()));
@@ -150,17 +178,17 @@ public class FragCheckoutReq extends PubFragment implements OnClickListener {
 			}
 			
 			break;
-		case R.id.btn_cancel:// 取消按钮的设定
-			// Intent intent = new Intent();
-			// if (APPData.flag == 1) {
-			// if (APPData.stutype == 1) {
-			// intent.setClass(RequestInfo.this, User_monitor.class);
-			// } else {
-			// intent.setClass(RequestInfo.this, User_stu.class);
-			// }
-			// }
-			// startActivity(intent);
-			break;
+//		case R.id.btn_cancel:// 取消按钮的设定
+//			// Intent intent = new Intent();
+//			// if (APPData.flag == 1) {
+//			// if (APPData.stutype == 1) {
+//			// intent.setClass(RequestInfo.this, User_monitor.class);
+//			// } else {
+//			// intent.setClass(RequestInfo.this, User_stu.class);
+//			// }
+//			// }
+//			// startActivity(intent);
+//			break;
 		case R.id.edtdate:// 起始设置日期
 			DatePickerDialog beginDateDlg = new DatePickerDialog(getActivity(),
 					new DatePickerDialog.OnDateSetListener() {
@@ -241,10 +269,19 @@ public class FragCheckoutReq extends PubFragment implements OnClickListener {
 	@Override
 	protected void doWording() {
 		Request request = new Request();
-
-		String stuCode = ((MainTabPub) container).getUserCode();
 		
-		request.setStuCode(stuCode);
+		String userCode = ((MainTabPub) container).getUserCode();
+		if (userCode!=null) {
+			if (userCode.length()==12) {
+				request.setStuCode(userCode);
+			} else if (userCode.length() == 8) {
+				request.setTransactorId(userCode);
+			}
+		}
+
+//		String stuCode = 
+		
+		
 		request.setCheckState("0");
 
 		try {
@@ -279,8 +316,22 @@ public class FragCheckoutReq extends PubFragment implements OnClickListener {
 					JSONObject rowModel = rows.getJSONObject(i);
 					System.out.println("rows["+i+"]............"+rowModel.toString());
 					
+					
 					try {
 						JSONUtil.jsonToBean(rowModel, updateReq);
+						
+						Date begin = new Date(Long.valueOf(updateReq.getBeginTime()));
+						Date end = new Date(Long.valueOf(updateReq.getEndTime()));
+						
+						System.out.println("==== begin ===="+begin+"====  end  ===="+end);
+						
+						btnBeginDate.setText((begin.getYear()+1900)+"-"+(begin.getMonth()+1)+"-"+(begin.getDate()));
+						btnBeginTime.setText(begin.getHours()+":"+begin.getMinutes());
+						btnEndDate.setText((end.getYear()+1900)+"-"+(end.getMonth()+1)+"-"+(end.getDate()));
+						btnEndTime.setText(end.getHours()+":"+end.getMinutes());
+						edtReason.setText(updateReq.getRequestReason());
+						String type = updateReq.getRequestTypeCode();
+						spnType.setSelection(Integer.valueOf(type.substring(type.length()-2)));
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

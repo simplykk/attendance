@@ -29,10 +29,10 @@ public class TeaPermission extends UserPermission implements Serializable {
 
 	@Override
 	protected void initGrids() {
-		grids = new TabGrids[] { new TabGrids(R.drawable.ic_launcher, "首页"),
-				new TabGrids(R.drawable.ic_launcher, "审核"),
-				new TabGrids(R.drawable.ic_launcher, "待审核信息"),
-				new TabGrids(R.drawable.ic_launcher, "审核历史记录") };
+		grids = new TabGrids[] { new TabGrids(R.drawable.logo_per_long, "首页"),
+				new TabGrids(R.drawable.logo_teacheck_long, "审核"),
+//				new TabGrids(R.drawable.logo_stuinfo_long, "学生信息"),
+				new TabGrids(R.drawable.logo_history_long, "审核历史记录") };
 		initFragments(container);
 	}
 
@@ -41,10 +41,11 @@ public class TeaPermission extends UserPermission implements Serializable {
 		
 		if (container == null) {
 			thisFragments = new Fragment[] { new FragMain(), new FragTeaCheck(),
-					new FragCheckoutReq(), new FragHistory() };
+					 new FragHistory() };
 		} else {
+			System.out.println("    教师父级元素不空     ");
 			thisFragments = new Fragment[] { new FragMain(container), new FragTeaCheck(container),
-					new FragCheckoutReq(container), new FragHistory(container) };
+					 new FragHistory(container) };
 		}
 	}
 

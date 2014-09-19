@@ -15,6 +15,7 @@ import cn.edu.zime.attendanceapp.R;
 import cn.edu.zime.attendanceapp.fragments.PubFragment;
 import cn.edu.zime.base.domain.BaseHttpInfo;
 import cn.edu.zime.base.domain.ComStuPermission;
+import cn.edu.zime.base.domain.TeaPermission;
 import cn.edu.zime.base.domain.UserPermission;
 import cn.edu.zime.base.domain.ViceMoniPermission;
 import cn.edu.zime.utils.HttpUtil;
@@ -31,9 +32,20 @@ public class MainTabPub extends FragActivityBase {
 	private int curFrag = -1;
 	
 	private String userCode;
+	private String transactorId;
 	
 	
 	
+	
+	
+	public String getTransactorId() {
+		return transactorId;
+	}
+
+	public void setTransactorId(String transactorId) {
+		this.transactorId = transactorId;
+	}
+
 	public String getUserCode() {
 		return userCode;
 	}
@@ -62,6 +74,8 @@ public class MainTabPub extends FragActivityBase {
 		FragActivityBase.httpInfo = (BaseHttpInfo) it.getSerializableExtra("httpInfo");
 		//userCode = (String) it.getSerializableExtra("userCode");
 		userCode = "120311120101";
+		transactorId = "34570001";
+		
 		//=== 需要自定义文字选这个
 		// SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(),
 		// uPermiss.getMaps(), R.layout.tab_grid, new String[] {
@@ -99,8 +113,20 @@ public class MainTabPub extends FragActivityBase {
 		setContentView(R.layout.main_tab_pub);
 
 		// 初始化操作＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-		uPermiss = new ComStuPermission(this);
-
+		//uPermiss = new ComStuPermission(this);
+//		uPermiss = new TeaPermission(this);
+		//uPermiss = new ViceMoniPermission(this);
+		if (userCode != null) {
+			if (userCode.length() == 12) {
+				uPermiss = new ComStuPermission(this);
+			} else if (userCode.length() == 8){
+				uPermiss = new TeaPermission(this);
+			}
+		} else {
+			uPermiss = new ComStuPermission(this);
+		}
+		
+		
 		initGridViews();
 
 		try {

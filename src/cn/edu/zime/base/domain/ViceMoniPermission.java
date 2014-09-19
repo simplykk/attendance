@@ -29,11 +29,11 @@ public class ViceMoniPermission extends UserPermission implements Serializable {
 
 	@Override
 	protected void initGrids() {
-		grids = new TabGrids[] { new TabGrids(R.drawable.ic_launcher, "首页"),
-				new TabGrids(R.drawable.ic_launcher, "请假"),
-				new TabGrids(R.drawable.ic_launcher, "待审核信息"),
-				new TabGrids(R.drawable.ic_launcher, "确认信息"),
-				new TabGrids(R.drawable.ic_launcher, "历史记录") };
+		grids = new TabGrids[] { new TabGrids(R.drawable.logo_per, "首页"),
+				new TabGrids(R.drawable.logo_request, "请假"),
+				new TabGrids(R.drawable.logo_updatereq, "待审核信息"),
+				new TabGrids(R.drawable.logo_confirm, "确认信息"),
+				new TabGrids(R.drawable.logo_history, "历史记录") };
 		initFragments(container);
 	}
 
